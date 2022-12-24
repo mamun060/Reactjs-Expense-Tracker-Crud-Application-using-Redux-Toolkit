@@ -7,17 +7,18 @@ const initialState = {
     transections: [],
     isLoading: false,
     isError: false,
-    error: ""
+    error: "",
+    editing: {}
 }
 
 // create fetch request 
-export const fetchTransectios = createAsyncThunk('transection/fetchTransections', async ()=> {
+export const fetchTransectios = createAsyncThunk('transection/fetchTransectios', async ()=> {
     const transections = await getTransactions();
     return transections;
 });
 
 export const addTransections = createAsyncThunk('transection/addTransections', async(data)=>{
-    const transections = await addTransaction();
+    const transections = await addTransaction(data);
     return transections;
 })
 
@@ -36,6 +37,14 @@ export const deleteTransections = createAsyncThunk('transection/deleteTransectio
 const transectionSlice = createSlice({
     name: "transection",
     initialState,
+    reducers: {
+        editActive: (state, action) => {
+            state.editing = action.payload
+        },
+        editInActive: (state) => {
+            state.editing = {}
+        }
+    },
     extraReducers: (builder)=> {
         builder
         .addCase( fetchTransectios.pending, (state)=>{
@@ -106,4 +115,5 @@ const transectionSlice = createSlice({
 
 
 // export file
+export const { editActive, editInActive } = transectionSlice.actions;
 export default transectionSlice.reducer;
