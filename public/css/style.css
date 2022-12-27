@@ -17,7 +17,7 @@
 .footer {
     padding: 20px;
     text-align: center;
-    background-color: #4338ca;
+    background-color: #00b894;
     color: whitesmoke;
 }
 
@@ -117,11 +117,11 @@ label {
 }
 
 .income {
-    background-color: #4338ca;
+    background-color: #20bf6b;
 }
 
 .expense {
-    background-color: #e6425e;
+    background-color: #eb3b5a;
 }
 
 .transaction .right {

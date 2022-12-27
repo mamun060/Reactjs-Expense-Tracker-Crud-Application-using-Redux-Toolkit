@@ -1,15 +1,15 @@
 {
   "transactions": [
     {
-      "name": "Md Al Mamun",
+      "name": "Salary from Google",
       "type": "income",
-      "amount": 30000,
+      "amount": "300000",
       "id": 1
     },
     {
-      "name": "Md Al Mamun",
+      "name": "Salary from uk",
       "type": "expense",
-      "amount": 20000,
+      "amount": "1000",
       "id": 2
     },
     {
@@ -23,6 +23,18 @@
       "type": "expense",
       "amount": 5000,
       "id": 4
+    },
+    {
+      "name": "Md Al Mamun",
+      "type": "income",
+      "amount": 20000,
+      "id": 5
+    },
+    {
+      "name": "Salary from Google",
+      "type": "expense",
+      "amount": "3000",
+      "id": 6
     }
   ]
 }

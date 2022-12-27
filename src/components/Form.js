@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTransections } from "../features/transaction/transectionSlice";
+import { addTransections, editTransections } from "../features/transaction/transectionSlice";
 
 export default function Form() {
     const [name, setName] = useState('');
@@ -11,12 +11,30 @@ export default function Form() {
     const dispatch = useDispatch();
     const { isLoading, isError } = useSelector((state)=> state.transection);
 
+    const {editing} = useSelector((state)=> state.transection || {} )
+
+    // listen edit mode active
+    useEffect(()=>{
+        // console.log(editing);
+        const {id, name, type, amount } = editing || {} ;
+        if(id){
+            setEditMode(true);
+            setName(name)
+            setType(type)
+            setAmount(amount)
+        } else {
+            setEditMode(false)
+            reset();
+        }
+    }, [editing])
+
 
     const reset = () => {
         setName('');
         setType('');
         setAmount('');
     }
+
     const handleCrete = (e) => {
         e.preventDefault();
         dispatch(addTransections({
@@ -27,11 +45,30 @@ export default function Form() {
         reset()
     }
 
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        dispatch(editTransections({
+            id: editing.id,
+            data: {
+                name: name,
+                type: type,
+                amount: amount
+            }, 
+        }))
+        reset()
+        setEditMode(false)
+    }
+
+
+    const cancelEditMode = () => {
+        setEditMode(false)
+    }
+
     return (
         <div className="form">
             <h3>Add new transaction</h3>
 
-            <form onSubmit={handleCrete}>
+            <form onSubmit={ editMode ? handleUpdate : handleCrete }>
                 <div className="form-group">
                     <label for="transaction_name">Name</label>
                     <input
@@ -88,12 +125,21 @@ export default function Form() {
                     )
                 }
 
-                <button disabled={isLoading} type="submit" className="btn">Add Transaction</button>
+                {/* {
+                    editMode ? (
+                        <button disabled={isLoading} type="submit" className="btn">Update Transaction</button>
+                    ) : <button disabled={isLoading} type="submit" className="btn">Add Transaction</button>
+                } */}
+
+                
+                <button disabled={isLoading} type="submit" className="btn">
+                    { editMode ? 'Update Transaction' : 'Add Transaction' }
+                </button>
 
             </form>
                 {
                     editMode && (
-                        <button className="btn cancel_edit">Cancel Edit</button>
+                        <button className="btn cancel_edit" onClick={cancelEditMode} >Cancel Edit</button>
                     )
                 }
 
