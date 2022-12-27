@@ -1,40 +1,10 @@
 {
   "transactions": [
     {
-      "name": "Salary from Google",
+      "name": "raju",
       "type": "income",
-      "amount": "300000",
+      "amount": "200000",
       "id": 1
-    },
-    {
-      "name": "Salary from uk",
-      "type": "expense",
-      "amount": "1000",
-      "id": 2
-    },
-    {
-      "name": "Turzo ",
-      "type": "income",
-      "amount": 10000,
-      "id": 3
-    },
-    {
-      "name": "Turzo ",
-      "type": "expense",
-      "amount": 5000,
-      "id": 4
-    },
-    {
-      "name": "Md Al Mamun",
-      "type": "income",
-      "amount": 20000,
-      "id": 5
-    },
-    {
-      "name": "Salary from Google",
-      "type": "expense",
-      "amount": "3000",
-      "id": 6
     }
   ]
 }

@@ -102,7 +102,7 @@ const transectionSlice = createSlice({
             state.isLoading = false;
 
             state.transections = state.transections.filter(
-                (t)=> t.id !== action.payload
+                (t)=> t.id !== action.meta.arg
             );
         })
         .addCase( deleteTransections.rejected, (state, action)=>{
